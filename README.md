@@ -29,7 +29,7 @@ MRX7014 Patches
 ## ❓ About
 
 MRX7014 Patches are based off the prior work of [ReVanced](https://github.com/ReVanced).
-All modifications made by Morphe, along with their dates, can be found in the Git history.
+All modifications made by Morphe, along with their dates, can be found in the Git history. Release bundles are published from the MRX7014 repository.
 
 &nbsp;
 ## 🩹 Patches list
