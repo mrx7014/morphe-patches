@@ -1,3 +1,9 @@
+## [1.41.1](https://github.com/mrx7014/morphe-patches/compare/v1.41.0...v1.41.1) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* prepare MRX7014 release ([2dd777e](https://github.com/mrx7014/morphe-patches/commit/2dd777e67c49f1931571026b0cfe3f2fca094334))
+
 ## [1.41.0](https://github.com/MorpheApp/morphe-patches/compare/v1.40.0...v1.41.0) (2026-09-01)
 
 ### 🐛 Bug Fixes
