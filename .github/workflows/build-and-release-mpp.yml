@@ -1,0 +1,83 @@
+name: Build and release MPP
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version without the v prefix, for example 1.41.1"
+        required: true
+        default: "1.41.1"
+        type: string
+      prerelease:
+        description: "Mark the GitHub Release as a prerelease"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  packages: read
+
+jobs:
+  build-and-release:
+    name: Build and publish MPP
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_VERSION: ${{ inputs.version }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACTOR: ${{ github.actor }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build MPP
+        run: ./gradlew :patches:buildAndroid --no-daemon
+
+      - name: Locate MPP
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          mapfile -t files < <(find patches/build/libs -maxdepth 1 -type f -name '*.mpp' ! -name '*sources*' ! -name '*javadoc*' | sort)
+          if [ "${#files[@]}" -ne 1 ]; then
+            echo "Expected exactly one production MPP, found ${#files[@]}"
+            printf '%s\n' "${files[@]}"
+            exit 1
+          fi
+          cp "${files[0]}" "release/patches-${RELEASE_VERSION}.mpp"
+          echo "MPP_FILE=release/patches-${RELEASE_VERSION}.mpp" >> "$GITHUB_ENV"
+          ls -lh release/patches-${RELEASE_VERSION}.mpp
+
+      - name: Upload MPP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: patches-${{ inputs.version }}-mpp
+          path: release/patches-${{ inputs.version }}.mpp
+          if-no-files-found: error
+
+      - name: Create GitHub Release and upload MPP
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag="v${RELEASE_VERSION}"
+          notes="MRX7014 Patches ${tag}.\n\nThe MPP bundle is attached to this release and is compatible with the Morphe Manager bundle metadata."
+          printf '%b\n' "$notes" > release-notes.md
+          gh release create "$tag" "$MPP_FILE" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --target "${GITHUB_SHA}" \
+            --title "MRX7014 Patches ${tag}" \
+            --notes-file release-notes.md \
+            $([ "${{ inputs.prerelease }}" = "true" ] && printf '%s' '--prerelease' || true)
