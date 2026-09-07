@@ -1341,15 +1341,16 @@ Limitation: Reverts to old style \'More videos\' overlay"</string>
 <string name="morphe_block_channels_screen_summary">Permanently hide all content from specific channels</string>
 <string name="morphe_block_channels_title">Block channels</string>
 <string name="morphe_block_channels_list_title">Channels to block</string>
-<string name="morphe_block_channels_list_summary">"Enter one channel name or @handle per line
+<string name="morphe_block_channels_list_summary">"Enter one YouTube channel ID or /channel/ URL per line
 
-Matching is always whole word/phrase (no partial matches), and common casing variations are added automatically"</string>
+Example: UCxxxxxxxxxxxxxxxxxxxxxx or https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx
+Channel names and @handles are not accepted because they can change or belong to multiple channels"</string>
 <string name="morphe_block_channels_about_summary">"Home / Subscriptions / Search / related videos / Shorts shelves / Comments are all filtered to hide content from blocked channels
 
 Limitations:
-• Some Shorts cards in search results do not include the channel name and may not be hidden
+• Some cards may not expose a channel ID in their serialized data and may not be hidden
 • Opening the channel page directly (URL, deep link, notification) is not blocked
-• If a channel changes its display name, the old entry must be updated"</string>
-<string name="morphe_block_channels_toast_invalid_length">Channel name/handle is too short: %s</string>
+• This feature uses the stable channel ID, so display-name and handle changes do not matter"</string>
+<string name="morphe_block_channels_toast_invalid_id">Invalid channel ID or channel URL: %s</string>
 
 </resources>
