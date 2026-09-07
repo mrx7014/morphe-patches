@@ -1,6 +1,6 @@
-Morphe NOTICE
+MRX7014 NOTICE (modified derivative of Morphe Patches)
 
-https://github.com/MorpheApp/morphe-patches
+https://github.com/mrx7014/morphe-patches
 
 =============
 
@@ -9,7 +9,7 @@ GPLv3 Section 7b: Preservation of User Notices
 All derivative works (source code and binaries) must include this
 NOTICE text and provide it to the software user.
 
-Portions of this software are provided "AS IS" by the Morphe software project.
+This modified derivative is provided "AS IS" by the MRX7014 Patches project. The original Morphe software project remains acknowledged below.
 Any express or implied warranties, including the implied warranties of
 merchantability and fitness for a particular purpose, are disclaimed.
 

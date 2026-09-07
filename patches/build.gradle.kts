@@ -2,12 +2,12 @@ group = "app.morphe"
 
 patches {
     about {
-        name = "Morphe Patches"
+        name = "MRX HALAWA Patches"
         description = "Patches for Morphe"
-        source = "git@github.com:MorpheApp/morphe-patches.git"
+        source = "git@github.com:mrx7014/morphe-patches.git"
         author = "MorpheApp"
         contact = "na"
-        website = "https://morphe.software"
+        website = "https://github.com/mrx7014/morphe-patches"
         license = "GNU General Public License v3.0, with additional GPL section 7 requirements"
     }
 }
