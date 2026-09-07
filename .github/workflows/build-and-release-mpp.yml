@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version without the v prefix, for example 1.41.1"
+        description: "Release version without the v prefix, for example 1.41.2"
         required: true
-        default: "1.41.1"
+        default: "1.41.2"
         type: string
       prerelease:
         description: "Mark the GitHub Release as a prerelease"
@@ -41,6 +41,60 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+
+      - name: Update release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          version = "${{ inputs.version }}"
+          if not re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?", version):
+              raise SystemExit(f"Invalid semantic version: {version}")
+
+          gradle = Path("gradle.properties")
+          text = gradle.read_text()
+          text, count = re.subn(r"^version\s*=\s*.*$", f"version = {version}", text, count=1, flags=re.MULTILINE)
+          if count != 1:
+              raise SystemExit("Could not update version in gradle.properties")
+          gradle.write_text(text)
+
+          bundle = Path("patches-bundle.json")
+          text = bundle.read_text()
+          json.loads(text)
+          text, count = re.subn(
+              r'("download_url"\s*:\s*")[^"]*(")',
+              rf'\g<1>https://github.com/mrx7014/morphe-patches/releases/download/v{version}/patches-{version}.mpp\g<2>',
+              text,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit("Could not update download_url in patches-bundle.json")
+          text, count = re.subn(r'("version"\s*:\s*")[^"]*(")\s*$', rf'\g<1>{version}\g<2>', text, count=1, flags=re.MULTILINE)
+          if count != 1:
+              raise SystemExit("Could not update version in patches-bundle.json")
+          json.loads(text)
+          bundle.write_text(text)
+
+          patch_list = Path("patches-list.json")
+          text = patch_list.read_text()
+          text, count = re.subn(r'^(\s*"version"\s*:\s*")[^"]*(")', rf'\g<1>{version}\g<2>', text, count=1, flags=re.MULTILINE)
+          if count != 1:
+              raise SystemExit("Could not update version in patches-list.json")
+          json.loads(text)
+          patch_list.write_text(text)
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gradle.properties patches-bundle.json patches-list.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update release metadata for v${RELEASE_VERSION} [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
 
       - name: Build MPP
         run: ./gradlew :patches:buildAndroid --no-daemon
@@ -77,7 +131,7 @@ jobs:
           printf '%b\n' "$notes" > release-notes.md
           gh release create "$tag" "$MPP_FILE" \
             --repo "${GITHUB_REPOSITORY}" \
-            --target "${GITHUB_SHA}" \
+            --target "$(git rev-parse HEAD)" \
             --title "MRX7014 Patches ${tag}" \
             --notes-file release-notes.md \
             $([ "${{ inputs.prerelease }}" = "true" ] && printf '%s' '--prerelease' || true)
