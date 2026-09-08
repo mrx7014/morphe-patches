@@ -54,14 +54,15 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
             "comment_thread.eml"
     );
 
-    /* Search-result channel cards use different identifiers from video cards across app versions. */
-    private final StringFilterGroup channelResultFilter = new StringFilterGroup(
+    /*
+     * Renderer names for channel results change frequently between YouTube versions.  All
+     * Litho component paths currently end in .e, so use that stable path shape instead of a
+     * short allow-list of renderer names.  BufferPhraseFilter still skips metadata, thumbnails,
+     * avatars, and overflow buttons through its exception list.
+     */
+    private final StringFilterGroup allLithoComponentsFilter = new StringFilterGroup(
             Settings.BLOCK_CHANNELS,
-            "channel_result",
-            "channel_renderer",
-            "search_channel",
-            "channel_lockup",
-            "compact_channel_bar.e"
+            ".e"
     );
 
     private volatile String lastChannelsParsed;
@@ -120,7 +121,7 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
 
     public BlockChannelsFilter() {
         super();
-        addPathCallbacks(commentsFilter, channelResultFilter);
+        addPathCallbacks(commentsFilter, allLithoComponentsFilter);
         parseChannels();
     }
 
