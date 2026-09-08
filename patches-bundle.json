@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T07:49:15",
-  "description": "## [1.43.2](https://github.com/mrx7014/morphe-patches/compare/v1.43.1...v1.43.2) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **youtube:** filter channel cards across renderer variants ([fcb4173](https://github.com/mrx7014/morphe-patches/commit/fcb41736557bc959df90d6feb5aca6ac9f134b03))\n* **youtube:** normalize channel handles case-insensitively ([c67c55a](https://github.com/mrx7014/morphe-patches/commit/c67c55a33c7b6d048948ec82b8000bf8a5561ef4))",
-  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.43.2/patches-1.43.2.mpp",
+  "created_at": "2026-09-08T08:53:41",
+  "description": "## [1.44.0](https://github.com/mrx7014/morphe-patches/compare/v1.43.2...v1.44.0) (2026-09-08)\n\n### ✨ New Features\n\n* **youtube:** add block channel action to channel flyout ([82040fd](https://github.com/mrx7014/morphe-patches/commit/82040fd9fb7314e467e238ac0c6df107a9d71f5e))",
+  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.44.0/patches-1.44.0.mpp",
   "signature_download_url": "",
-  "version": "1.43.2"
+  "version": "1.44.0"
 }

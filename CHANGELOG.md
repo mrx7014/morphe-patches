@@ -1,3 +1,9 @@
+## [1.44.0](https://github.com/mrx7014/morphe-patches/compare/v1.43.2...v1.44.0) (2026-09-08)
+
+### ✨ New Features
+
+* **youtube:** add block channel action to channel flyout ([82040fd](https://github.com/mrx7014/morphe-patches/commit/82040fd9fb7314e467e238ac0c6df107a9d71f5e))
+
 ## [1.43.2](https://github.com/mrx7014/morphe-patches/compare/v1.43.1...v1.43.2) (2026-09-08)
 
 ### 🐛 Bug Fixes
