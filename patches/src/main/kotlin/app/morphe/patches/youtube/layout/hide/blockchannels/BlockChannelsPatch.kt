@@ -29,9 +29,9 @@ private const val BLOCK_CHANNELS_FILTER =
 @Suppress("unused")
 val blockChannelsPatch = bytecodePatch(
     name = "Block channels",
-    description = "Adds an option to permanently hide all content from specific channels " +
-            "(by stable YouTube channel ID) in the Home feed, Subscriptions, Search results, related " +
-            "videos, Shorts shelves, and comments."
+    description = "Adds an option to permanently hide content and channel results from specific " +
+            "YouTube channels by channel ID, @handle, or channel URL in Home, Subscriptions, Search, " +
+            "related videos, Shorts shelves, and comments."
 ) {
     dependsOn(
         lithoFilterPatch,

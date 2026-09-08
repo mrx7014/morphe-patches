@@ -1341,16 +1341,16 @@ Limitation: Reverts to old style \'More videos\' overlay"</string>
 <string name="morphe_block_channels_screen_summary">Permanently hide all content from specific channels</string>
 <string name="morphe_block_channels_title">Block channels</string>
 <string name="morphe_block_channels_list_title">Channels to block</string>
-<string name="morphe_block_channels_list_summary">"Enter one YouTube channel ID or /channel/ URL per line
+    <string name="morphe_block_channels_list_summary">"Enter one channel ID, @handle, or YouTube channel URL per line
 
-Example: UCxxxxxxxxxxxxxxxxxxxxxx or https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx
-Channel names and @handles are not accepted because they can change or belong to multiple channels"</string>
-<string name="morphe_block_channels_about_summary">"Home / Subscriptions / Search / related videos / Shorts shelves / Comments are all filtered to hide content from blocked channels
+Examples: UCxxxxxxxxxxxxxxxxxxxxxx, @channel_handle, https://www.youtube.com/@channel_handle, or https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx
+The channel ID is most stable; handles and channel URLs are accepted for convenience"</string>
+    <string name="morphe_block_channels_about_summary">"Home / Subscriptions / Search channel results / related videos / Shorts shelves / Comments are filtered to hide content from blocked channels
 
 Limitations:
-• Some cards may not expose a channel ID in their serialized data and may not be hidden
+• Some cards may not expose a channel ID or handle in their serialized data and may not be hidden
 • Opening the channel page directly (URL, deep link, notification) is not blocked
-• This feature uses the stable channel ID, so display-name and handle changes do not matter"</string>
-<string name="morphe_block_channels_toast_invalid_id">Invalid channel ID or channel URL: %s</string>
+• A handle can change; use the stable channel ID when possible"</string>
+    <string name="morphe_block_channels_toast_invalid_id">Invalid channel ID, handle, or channel URL: %s</string>
 
 </resources>
