@@ -1,3 +1,10 @@
+## [1.43.2](https://github.com/mrx7014/morphe-patches/compare/v1.43.1...v1.43.2) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **youtube:** filter channel cards across renderer variants ([fcb4173](https://github.com/mrx7014/morphe-patches/commit/fcb41736557bc959df90d6feb5aca6ac9f134b03))
+* **youtube:** normalize channel handles case-insensitively ([c67c55a](https://github.com/mrx7014/morphe-patches/commit/c67c55a33c7b6d048948ec82b8000bf8a5561ef4))
+
 ## [1.43.1](https://github.com/mrx7014/morphe-patches/compare/v1.43.0...v1.43.1) (2026-09-08)
 
 ### 🐛 Bug Fixes
