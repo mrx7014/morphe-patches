@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,6 +46,8 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
             Pattern.compile("UC[A-Za-z0-9_-]{22}");
     private static final Pattern HANDLE_PATTERN =
             Pattern.compile("@[A-Za-z0-9._-]{3,30}");
+    private static final Pattern BARE_HANDLE_PATTERN =
+            Pattern.compile("[A-Za-z0-9._-]{3,30}");
     private static final Pattern HANDLE_URL_PATTERN =
             Pattern.compile("https?://(?:www\\.)?youtube\\.com/(@[A-Za-z0-9._-]{3,30})(?:[/?#].*)?",
                     Pattern.CASE_INSENSITIVE);
@@ -67,6 +70,7 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
 
     private volatile String lastChannelsParsed;
     private volatile ByteTrieSearch channelSearch;
+    private volatile ByteTrieSearch handleSearch;
 
     private static String normalizeEntry(String value) {
         Matcher idMatcher = CHANNEL_ID_PATTERN.matcher(value);
@@ -78,6 +82,9 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
         Matcher handleMatcher = HANDLE_PATTERN.matcher(value);
         if (handleMatcher.matches()) return handleMatcher.group();
 
+        Matcher bareHandleMatcher = BARE_HANDLE_PATTERN.matcher(value);
+        if (bareHandleMatcher.matches()) return "@" + bareHandleMatcher.group();
+
         return null;
     }
 
@@ -87,6 +94,7 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
         if (rawChannels == lastChannelsParsed) return;
 
         ByteTrieSearch search = new ByteTrieSearch();
+        ByteTrieSearch handles = new ByteTrieSearch();
         Set<String> channels = new LinkedHashSet<>();
 
         for (String entry : rawChannels.split("\\R")) {
@@ -112,9 +120,13 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
                         return true;
                     };
             search.addPattern(channel.getBytes(StandardCharsets.UTF_8), callback);
+            if (channel.charAt(0) == '@') {
+                handles.addPattern(channel.toLowerCase(Locale.ROOT).getBytes(StandardCharsets.UTF_8), callback);
+            }
         }
 
         channelSearch = search;
+        handleSearch = handles;
         lastChannelsParsed = rawChannels;
         Logger.printDebug(() -> "Blocking channels: " + channels);
     }
@@ -145,6 +157,15 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
         if (search == null) return null;
 
         MutableReference<String> matchRef = new MutableReference<>();
-        return search.matches(buffer, matchRef) ? matchRef.value : null;
+        if (search.matches(buffer, matchRef)) return matchRef.value;
+
+        ByteTrieSearch handles = handleSearch;
+        if (handles != null && handles != search) {
+            String lowerBuffer = new String(buffer, StandardCharsets.UTF_8).toLowerCase(Locale.ROOT);
+            if (handles.matches(lowerBuffer.getBytes(StandardCharsets.UTF_8), matchRef)) {
+                return matchRef.value;
+            }
+        }
+        return null;
     }
 }
