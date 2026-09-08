@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T06:00:17",
-  "description": "## [1.42.0](https://github.com/mrx7014/morphe-patches/compare/v1.41.3...v1.42.0) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* add generated patches README template ([3be1a98](https://github.com/mrx7014/morphe-patches/commit/3be1a98f31cf3f43cce93c5312255923c7afda01))\n\n### ✨ New Features\n\n* **youtube:** block channels by stable channel ID ([836c70c](https://github.com/mrx7014/morphe-patches/commit/836c70c5bcd69d6f85a52d4ba4b5ffdaf3e15034))",
-  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.42.0/patches-1.42.0.mpp",
+  "created_at": "2026-09-08T07:00:50",
+  "description": "## [1.43.0](https://github.com/mrx7014/morphe-patches/compare/v1.42.0...v1.43.0) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **release:** disable incompatible dev backmerge ([52d32cb](https://github.com/mrx7014/morphe-patches/commit/52d32cb7b35d44c91ef306d9091fad1103d2307a))\n\n### ✨ New Features\n\n* **youtube:** improve block channels input and search filtering ([eeaff9e](https://github.com/mrx7014/morphe-patches/commit/eeaff9ef3546eac2ae69a45c2d61e30641f6577e))",
+  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.43.0/patches-1.43.0.mpp",
   "signature_download_url": "",
-  "version": "1.42.0"
+  "version": "1.43.0"
 }

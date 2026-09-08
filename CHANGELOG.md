@@ -1,3 +1,13 @@
+## [1.43.0](https://github.com/mrx7014/morphe-patches/compare/v1.42.0...v1.43.0) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **release:** disable incompatible dev backmerge ([52d32cb](https://github.com/mrx7014/morphe-patches/commit/52d32cb7b35d44c91ef306d9091fad1103d2307a))
+
+### ✨ New Features
+
+* **youtube:** improve block channels input and search filtering ([eeaff9e](https://github.com/mrx7014/morphe-patches/commit/eeaff9ef3546eac2ae69a45c2d61e30641f6577e))
+
 ## [1.42.0](https://github.com/mrx7014/morphe-patches/compare/v1.41.3...v1.42.0) (2026-09-08)
 
 ### 🐛 Bug Fixes

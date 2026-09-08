@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.42.0",
+  "version": "1.43.0",
   "patches": [
     {
       "name": "Add to queue",
@@ -390,7 +390,7 @@
     },
     {
       "name": "Block channels",
-      "description": "Adds an option to permanently hide all content from specific channels (by stable YouTube channel ID) in the Home feed, Subscriptions, Search results, related videos, Shorts shelves, and comments.",
+      "description": "Adds an option to permanently hide content and channel results from specific YouTube channels by channel ID, @handle, or channel URL in Home, Subscriptions, Search, related videos, Shorts shelves, and comments.",
       "default": true,
       "dependencies": [
         "BytecodePatch",
