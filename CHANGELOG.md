@@ -1,3 +1,9 @@
+## [1.45.0](https://github.com/mrx7014/morphe-patches/compare/v1.44.0...v1.45.0) (2026-09-08)
+
+### ✨ New Features
+
+* **youtube:** prompt restart after blocking a channel ([9e71be2](https://github.com/mrx7014/morphe-patches/commit/9e71be2cd72fb85871c464c3b64ee4b447b5f905))
+
 ## [1.44.0](https://github.com/mrx7014/morphe-patches/compare/v1.43.2...v1.44.0) (2026-09-08)
 
 ### ✨ New Features
