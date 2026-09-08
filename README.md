@@ -7,9 +7,9 @@ This repository contains the patches used by **Morphe Patcher** to modify suppor
 The generated list below contains the supported applications, patch descriptions, and target versions. It is updated automatically during the release workflow.
 
 <!-- PATCHES_START -->
-> **[v1.41.3](https://github.com/mrx7014/morphe-patches/releases/tag/v1.41.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;145 patches total
+> **[v1.42.0](https://github.com/mrx7014/morphe-patches/releases/tag/v1.42.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;146 patches total
 <details>
-<summary>📦 YouTube&nbsp;&nbsp;•&nbsp;&nbsp;81 patches</summary>
+<summary>📦 YouTube&nbsp;&nbsp;•&nbsp;&nbsp;82 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -23,6 +23,7 @@ The generated list below contains the supported applications, patch descriptions
 | [Alternative thumbnails](#alternative-thumbnails) | Adds options to replace video thumbnails using the DeArrow API or image captures from the video. |  |
 | [Ambient mode](#ambient-mode) | Adds options to bypass power saving restrictions for Ambient mode and disable it entirely or in fullscreen. |  |
 | [App refresh rate](#app-refresh-rate) | Adds an option to change the app refresh rate. |  |
+| [Block channels](#block-channels) | Adds an option to permanently hide all content from specific channels (by stable YouTube channel ID) in the Home feed, Subscriptions, Search results, related videos, Shorts shelves, and comments. |  |
 | [Bypass image region restrictions](#bypass-image-region-restrictions) | Adds an option to use a different host for user avatar and channel images and can fix missing images that are blocked in some countries. |  |
 | [Bypass link redirects](#bypass-link-redirects) | Adds an option to bypass redirects and open the original link directly. |  |
 | [Captions](#captions) | Adds an option to disable captions from being automatically enabled or to set caption cookies. |  |

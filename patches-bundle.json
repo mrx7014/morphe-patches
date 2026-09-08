@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-07T13:11:38",
-  "description": "## [1.41.1](https://github.com/mrx7014/morphe-patches/compare/v1.41.0...v1.41.1) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* prepare MRX7014 release ([2dd777e](https://github.com/mrx7014/morphe-patches/commit/2dd777e67c49f1931571026b0cfe3f2fca094334))",
-  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.41.3/patches-1.41.3.mpp",
+  "created_at": "2026-09-08T06:00:17",
+  "description": "## [1.42.0](https://github.com/mrx7014/morphe-patches/compare/v1.41.3...v1.42.0) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* add generated patches README template ([3be1a98](https://github.com/mrx7014/morphe-patches/commit/3be1a98f31cf3f43cce93c5312255923c7afda01))\n\n### ✨ New Features\n\n* **youtube:** block channels by stable channel ID ([836c70c](https://github.com/mrx7014/morphe-patches/commit/836c70c5bcd69d6f85a52d4ba4b5ffdaf3e15034))",
+  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.42.0/patches-1.42.0.mpp",
   "signature_download_url": "",
-  "version": "1.41.3"
+  "version": "1.42.0"
 }

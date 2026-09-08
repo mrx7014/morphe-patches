@@ -1,3 +1,13 @@
+## [1.42.0](https://github.com/mrx7014/morphe-patches/compare/v1.41.3...v1.42.0) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* add generated patches README template ([3be1a98](https://github.com/mrx7014/morphe-patches/commit/3be1a98f31cf3f43cce93c5312255923c7afda01))
+
+### ✨ New Features
+
+* **youtube:** block channels by stable channel ID ([836c70c](https://github.com/mrx7014/morphe-patches/commit/836c70c5bcd69d6f85a52d4ba4b5ffdaf3e15034))
+
 ## [1.41.1](https://github.com/mrx7014/morphe-patches/compare/v1.41.0...v1.41.1) (2026-09-07)
 
 ### 🐛 Bug Fixes
