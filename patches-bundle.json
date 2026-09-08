@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T07:00:50",
-  "description": "## [1.43.0](https://github.com/mrx7014/morphe-patches/compare/v1.42.0...v1.43.0) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **release:** disable incompatible dev backmerge ([52d32cb](https://github.com/mrx7014/morphe-patches/commit/52d32cb7b35d44c91ef306d9091fad1103d2307a))\n\n### ✨ New Features\n\n* **youtube:** improve block channels input and search filtering ([eeaff9e](https://github.com/mrx7014/morphe-patches/commit/eeaff9ef3546eac2ae69a45c2d61e30641f6577e))",
-  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.43.0/patches-1.43.0.mpp",
+  "created_at": "2026-09-08T07:11:56",
+  "description": "## [1.43.1](https://github.com/mrx7014/morphe-patches/compare/v1.43.0...v1.43.1) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **ci:** avoid invalid secret conditions in release workflow ([5aa0549](https://github.com/mrx7014/morphe-patches/commit/5aa0549a75a9bf94a6ab6d6654da8d924293467c))\n* **ci:** skip website deploy when app credentials are missing ([25c641d](https://github.com/mrx7014/morphe-patches/commit/25c641d8ef43d350460f11fba73024caed14149b))",
+  "download_url": "https://github.com/mrx7014/morphe-patches/releases/download/v1.43.1/patches-1.43.1.mpp",
   "signature_download_url": "",
-  "version": "1.43.0"
+  "version": "1.43.1"
 }

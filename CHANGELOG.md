@@ -1,3 +1,10 @@
+## [1.43.1](https://github.com/mrx7014/morphe-patches/compare/v1.43.0...v1.43.1) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **ci:** avoid invalid secret conditions in release workflow ([5aa0549](https://github.com/mrx7014/morphe-patches/commit/5aa0549a75a9bf94a6ab6d6654da8d924293467c))
+* **ci:** skip website deploy when app credentials are missing ([25c641d](https://github.com/mrx7014/morphe-patches/commit/25c641d8ef43d350460f11fba73024caed14149b))
+
 ## [1.43.0](https://github.com/mrx7014/morphe-patches/compare/v1.42.0...v1.43.0) (2026-09-08)
 
 ### 🐛 Bug Fixes
