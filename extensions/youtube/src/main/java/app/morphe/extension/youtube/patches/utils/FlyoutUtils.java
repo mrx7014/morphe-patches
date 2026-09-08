@@ -57,6 +57,8 @@ import app.morphe.extension.youtube.patches.AddToQueuePatch;
 import app.morphe.extension.youtube.patches.LegacyPlayerControlsPatch;
 import app.morphe.extension.youtube.patches.SaveToWatchLaterPatch;
 import app.morphe.extension.youtube.patches.VideoInformation;
+import app.morphe.extension.youtube.patches.components.BlockChannelsFilter;
+import app.morphe.extension.youtube.patches.components.ChannelPageFlyoutFilter;
 import app.morphe.extension.youtube.settings.Settings;
 import app.morphe.extension.youtube.shared.EngagementPanel;
 import app.morphe.extension.youtube.shared.PlayerType;
@@ -128,6 +130,7 @@ public final class FlyoutUtils {
                             : "yt_outline_experimental_clock_vd_theme_24"
             );
     private static final String saveToWatchLaterButtonName = str("morphe_save_to_watch_later_flyout_title");
+    private static final String blockChannelButtonName = str("morphe_block_channel_flyout_title");
 
     private static WeakReference<TextView> customItemTextRef = new WeakReference<>(null);
 
@@ -273,6 +276,20 @@ public final class FlyoutUtils {
 
     private static void addFlyoutElements(Object flyoutPanel) {
         int nextButtonIndex = 0;
+
+        String channelId = ChannelPageFlyoutFilter.getFlyoutChannelId();
+        if (Settings.BLOCK_CHANNELS.get() && !channelId.isEmpty()) {
+            nextButtonIndex = addFlyoutButton(
+                    flyoutPanel,
+                    null,
+                    blockChannelButtonName,
+                    v -> {
+                        BlockChannelsFilter.addChannelId(channelId);
+                        dismissFlyout();
+                    },
+                    nextButtonIndex
+            );
+        }
 
         // TODO: Add playlists compatibility to Morphe's queue.
         if (Settings.QUEUE_ADD_FLYOUT_MENU.get() &&

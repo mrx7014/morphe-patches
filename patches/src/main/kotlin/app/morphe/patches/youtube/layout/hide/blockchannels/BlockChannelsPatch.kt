@@ -21,6 +21,7 @@ import app.morphe.patches.youtube.misc.litho.filter.lithoFilterPatch
 import app.morphe.patches.youtube.misc.proto.elementProtoParserHookPatch
 import app.morphe.patches.youtube.misc.settings.PreferenceScreen
 import app.morphe.patches.youtube.misc.settings.settingsPatch
+import app.morphe.patches.youtube.layout.flyout.addToQueuePatch
 import app.morphe.patches.youtube.shared.Constants.COMPATIBILITY_YOUTUBE
 
 private const val BLOCK_CHANNELS_FILTER =
@@ -37,7 +38,9 @@ val blockChannelsPatch = bytecodePatch(
         lithoFilterPatch,
         settingsPatch,
         elementProtoParserHookPatch,
-        fixProtoLibraryPatch
+        fixProtoLibraryPatch,
+        // Provides the channel-page flyout hook and ChannelPageFlyoutFilter used by the button.
+        addToQueuePatch
     )
 
     compatibleWith(COMPATIBILITY_YOUTUBE)

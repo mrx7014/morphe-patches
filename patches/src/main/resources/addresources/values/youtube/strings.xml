@@ -1339,8 +1339,11 @@ Limitation: Reverts to old style \'More videos\' overlay"</string>
     <!-- Block Channels -->
     <string name="morphe_block_channels_screen_title">Block channels</string>
 <string name="morphe_block_channels_screen_summary">Permanently hide all content from specific channels</string>
-<string name="morphe_block_channels_title">Block channels</string>
-<string name="morphe_block_channels_list_title">Channels to block</string>
+    <string name="morphe_block_channels_title">Block channels</string>
+    <string name="morphe_block_channel_flyout_title">Block channel</string>
+    <string name="morphe_block_channels_added">Channel blocked: %s</string>
+    <string name="morphe_block_channels_already_blocked">Channel is already blocked</string>
+    <string name="morphe_block_channels_list_title">Channels to block</string>
     <string name="morphe_block_channels_list_summary">"Enter one channel ID, @handle, or YouTube channel URL per line
 
 Examples: UCxxxxxxxxxxxxxxxxxxxxxx, @channel_handle, https://www.youtube.com/@channel_handle, or https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx

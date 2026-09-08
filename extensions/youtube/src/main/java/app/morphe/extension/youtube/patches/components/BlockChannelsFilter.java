@@ -22,6 +22,7 @@ import app.morphe.extension.shared.ByteTrieSearch;
 import app.morphe.extension.shared.Logger;
 import app.morphe.extension.shared.TrieSearch;
 import app.morphe.extension.shared.Utils;
+import app.morphe.extension.shared.settings.Setting;
 import app.morphe.extension.shared.patches.components.BufferPhraseFilter;
 import app.morphe.extension.shared.patches.components.StringFilterGroup;
 import app.morphe.extension.youtube.settings.Settings;
@@ -71,6 +72,26 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
     private volatile String lastChannelsParsed;
     private volatile ByteTrieSearch channelSearch;
     private volatile ByteTrieSearch handleSearch;
+
+    /** Adds a channel ID from the channel-page menu without requiring manual settings input. */
+    public static void addChannelId(String channelId) {
+        if (channelId == null || !CHANNEL_ID_PATTERN.matcher(channelId).matches()) return;
+
+        String current = Settings.BLOCK_CHANNELS_LIST.get();
+        for (String entry : current.split("\\R")) {
+            if (channelId.equals(entry.trim())) {
+                Utils.showToastLong(str("morphe_block_channels_already_blocked"));
+                return;
+            }
+        }
+
+        String updated = current.trim().isEmpty() ? channelId : current.trim() + "\\n" + channelId;
+        Setting.preferences.preferences.edit().putString(
+                Settings.BLOCK_CHANNELS_LIST.key,
+                updated
+        ).apply();
+        Utils.showToastLong(str("morphe_block_channels_added", channelId));
+    }
 
     private static String normalizeEntry(String value) {
         Matcher idMatcher = CHANNEL_ID_PATTERN.matcher(value);
