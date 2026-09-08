@@ -1343,6 +1343,10 @@ Limitation: Reverts to old style \'More videos\' overlay"</string>
     <string name="morphe_block_channel_flyout_title">Block channel</string>
     <string name="morphe_block_channels_added">Channel blocked: %s</string>
     <string name="morphe_block_channels_already_blocked">Channel is already blocked</string>
+    <string name="morphe_block_channels_restart_title">Restart YouTube</string>
+    <string name="morphe_block_channels_restart_summary">Restart YouTube to apply the blocked-channel change everywhere.</string>
+    <string name="morphe_block_channels_restart_now">Restart now</string>
+    <string name="morphe_block_channels_restart_later">Later</string>
     <string name="morphe_block_channels_list_title">Channels to block</string>
     <string name="morphe_block_channels_list_summary">"Enter one channel ID, @handle, or YouTube channel URL per line
 

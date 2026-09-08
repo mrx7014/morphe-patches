@@ -74,23 +74,24 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
     private volatile ByteTrieSearch handleSearch;
 
     /** Adds a channel ID from the channel-page menu without requiring manual settings input. */
-    public static void addChannelId(String channelId) {
-        if (channelId == null || !CHANNEL_ID_PATTERN.matcher(channelId).matches()) return;
+    public static boolean addChannelId(String channelId) {
+        if (channelId == null || !CHANNEL_ID_PATTERN.matcher(channelId).matches()) return false;
 
         String current = Settings.BLOCK_CHANNELS_LIST.get();
         for (String entry : current.split("\\R")) {
             if (channelId.equals(entry.trim())) {
                 Utils.showToastLong(str("morphe_block_channels_already_blocked"));
-                return;
+                return false;
             }
         }
 
-        String updated = current.trim().isEmpty() ? channelId : current.trim() + "\\n" + channelId;
+        String updated = current.trim().isEmpty() ? channelId : current.trim() + "\n" + channelId;
         Setting.preferences.preferences.edit().putString(
                 Settings.BLOCK_CHANNELS_LIST.key,
                 updated
         ).apply();
         Utils.showToastLong(str("morphe_block_channels_added", channelId));
+        return true;
     }
 
     private static String normalizeEntry(String value) {

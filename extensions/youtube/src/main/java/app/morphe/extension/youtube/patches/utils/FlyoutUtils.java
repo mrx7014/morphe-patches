@@ -12,6 +12,7 @@ import static app.morphe.extension.youtube.patches.utils.PlaylistPatch.QueueMana
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -131,6 +132,8 @@ public final class FlyoutUtils {
             );
     private static final String saveToWatchLaterButtonName = str("morphe_save_to_watch_later_flyout_title");
     private static final String blockChannelButtonName = str("morphe_block_channel_flyout_title");
+    private static final Drawable blockChannelButtonDrawable =
+            ResourceUtils.getDrawable("yt_outline_flag");
 
     private static WeakReference<TextView> customItemTextRef = new WeakReference<>(null);
 
@@ -281,11 +284,12 @@ public final class FlyoutUtils {
         if (Settings.BLOCK_CHANNELS.get() && !channelId.isEmpty()) {
             nextButtonIndex = addFlyoutButton(
                     flyoutPanel,
-                    null,
+                    blockChannelButtonDrawable,
                     blockChannelButtonName,
                     v -> {
-                        BlockChannelsFilter.addChannelId(channelId);
+                        boolean added = BlockChannelsFilter.addChannelId(channelId);
                         dismissFlyout();
+                        if (added) showRestartToApplyDialog();
                     },
                     nextButtonIndex
             );
@@ -325,6 +329,22 @@ public final class FlyoutUtils {
         if (nextButtonIndex > 0) {
             addDivider(flyoutPanel, nextButtonIndex);
         }
+    }
+
+    private static void showRestartToApplyDialog() {
+        Context context = Utils.getActivity();
+        if (!(context instanceof android.app.Activity activity) ||
+                activity.isFinishing() || activity.isDestroyed()) {
+            return;
+        }
+
+        new AlertDialog.Builder(activity)
+                .setTitle(str("morphe_block_channels_restart_title"))
+                .setMessage(str("morphe_block_channels_restart_summary"))
+                .setNegativeButton(str("morphe_block_channels_restart_later"), null)
+                .setPositiveButton(str("morphe_block_channels_restart_now"),
+                        (dialog, which) -> activity.recreate())
+                .show();
     }
 
     /**
