@@ -1,3 +1,9 @@
+## [1.47.0](https://github.com/mrx7014/morphe-patches/compare/v1.46.1...v1.47.0) (2026-09-10)
+
+### ✨ New Features
+
+* **youtube:** add AI channel search and metadata controls ([046d101](https://github.com/mrx7014/morphe-patches/commit/046d1010fd621a997d845259827aab553f980404))
+
 ## [1.46.1](https://github.com/mrx7014/morphe-patches/compare/v1.46.0...v1.46.1) (2026-09-10)
 
 ### 🐛 Bug Fixes
