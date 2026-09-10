@@ -1340,7 +1340,11 @@ Limitation: Reverts to old style \'More videos\' overlay"</string>
     <string name="morphe_block_channels_screen_title">Block channels</string>
 <string name="morphe_block_channels_screen_summary">Permanently hide all content from specific channels</string>
     <string name="morphe_block_channels_title">Block channels</string>
-    <string name="morphe_block_channel_flyout_title">Block channel</string>
+    <string name="morphe_block_channel_flyout_title">Block this channel</string>
+    <string name="morphe_block_channels_confirm_title">Block this channel?</string>
+    <string name="morphe_block_channels_confirm_summary">This channel will be hidden from Home, Search, Subscriptions, related videos, Shorts, and comments. Do you want to continue?</string>
+    <string name="morphe_block_channels_confirm_yes">Yes</string>
+    <string name="morphe_block_channels_confirm_no">No</string>
     <string name="morphe_block_channels_added">Channel blocked: %s</string>
     <string name="morphe_block_channels_already_blocked">Channel is already blocked</string>
     <string name="morphe_block_channels_restart_title">Restart YouTube</string>

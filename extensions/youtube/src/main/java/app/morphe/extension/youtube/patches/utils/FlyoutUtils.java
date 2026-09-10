@@ -281,15 +281,15 @@ public final class FlyoutUtils {
         int nextButtonIndex = 0;
 
         String channelId = ChannelPageFlyoutFilter.getFlyoutChannelId();
+        String channelHandle = ChannelPageFlyoutFilter.getFlyoutHandle();
         if (Settings.BLOCK_CHANNELS.get() && !channelId.isEmpty()) {
             nextButtonIndex = addFlyoutButton(
                     flyoutPanel,
                     blockChannelButtonDrawable,
                     blockChannelButtonName,
                     v -> {
-                        boolean added = BlockChannelsFilter.addChannelId(channelId);
                         dismissFlyout();
-                        if (added) showRestartToApplyDialog();
+                        showBlockChannelConfirmation(channelId, channelHandle);
                     },
                     nextButtonIndex
             );
@@ -344,6 +344,26 @@ public final class FlyoutUtils {
                 .setNegativeButton(str("morphe_block_channels_restart_later"), null)
                 .setPositiveButton(str("morphe_block_channels_restart_now"),
                         (dialog, which) -> activity.recreate())
+                .show();
+    }
+
+    private static void showBlockChannelConfirmation(String channelId, String channelHandle) {
+        Context context = Utils.getActivity();
+        if (!(context instanceof android.app.Activity activity) ||
+                activity.isFinishing() || activity.isDestroyed()) {
+            return;
+        }
+
+        new AlertDialog.Builder(activity)
+                .setTitle(str("morphe_block_channels_confirm_title"))
+                .setMessage(str("morphe_block_channels_confirm_summary"))
+                .setNegativeButton(str("morphe_block_channels_confirm_no"), null)
+                .setPositiveButton(str("morphe_block_channels_confirm_yes"),
+                        (dialog, which) -> {
+                            if (BlockChannelsFilter.addChannel(channelId, channelHandle)) {
+                                showRestartToApplyDialog();
+                            }
+                        })
                 .show();
     }
 

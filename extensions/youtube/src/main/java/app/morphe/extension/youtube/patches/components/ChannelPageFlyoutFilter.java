@@ -8,6 +8,8 @@
 package app.morphe.extension.youtube.patches.components;
 
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import app.morphe.extension.shared.Logger;
 import app.morphe.extension.shared.Utils;
@@ -21,11 +23,17 @@ import app.morphe.extension.youtube.patches.utils.FlyoutUtils;
 public final class ChannelPageFlyoutFilter extends Filter {
 
     private static final byte[] CHANNEL_ID_PREFIX_BYTES = FlyoutUtils.getAsciiBytes("UC");
+    private static final Pattern HANDLE_PATTERN = Pattern.compile("@[A-Za-z0-9._-]{3,30}");
     private static String flyoutChannelId = "";
+    private static String flyoutHandle = "";
     private volatile boolean delayedFetch;
 
     public static String getFlyoutChannelId() {
         return flyoutChannelId;
+    }
+
+    public static String getFlyoutHandle() {
+        return flyoutHandle;
     }
 
     public ChannelPageFlyoutFilter() {
@@ -57,12 +65,18 @@ public final class ChannelPageFlyoutFilter extends Filter {
         }
 
         if (isValidChannelId(buffer, index)) {
+            flyoutHandle = "";
             flyoutChannelId = new String(
                     buffer,
                     index,
                     FlyoutUtils.CHANNEL_ID_LENGTH,
                     StandardCharsets.US_ASCII
             );
+            Matcher handleMatcher = HANDLE_PATTERN.matcher(
+                    new String(buffer, StandardCharsets.UTF_8));
+            if (handleMatcher.find()) {
+                flyoutHandle = handleMatcher.group();
+            }
             Logger.printDebug(() -> "Found channelId: " + flyoutChannelId);
             delayedFetch = true;
             Utils.runOnMainThreadDelayed(() -> delayedFetch = false, 1000);

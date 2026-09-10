@@ -75,20 +75,32 @@ public final class BlockChannelsFilter extends BufferPhraseFilter {
 
     /** Adds a channel ID from the channel-page menu without requiring manual settings input. */
     public static boolean addChannelId(String channelId) {
+        return addChannel(channelId, null);
+    }
+
+    /** Adds the stable ID and, when available, the channel handle for broader card coverage. */
+    public static boolean addChannel(String channelId, String handle) {
         if (channelId == null || !CHANNEL_ID_PATTERN.matcher(channelId).matches()) return false;
 
         String current = Settings.BLOCK_CHANNELS_LIST.get();
+        Set<String> existing = new LinkedHashSet<>();
         for (String entry : current.split("\\R")) {
-            if (channelId.equals(entry.trim())) {
-                Utils.showToastLong(str("morphe_block_channels_already_blocked"));
-                return false;
-            }
+            if (!entry.trim().isEmpty()) existing.add(entry.trim());
         }
 
-        String updated = current.trim().isEmpty() ? channelId : current.trim() + "\n" + channelId;
+        if (existing.contains(channelId)) {
+            Utils.showToastLong(str("morphe_block_channels_already_blocked"));
+            return false;
+        }
+        StringBuilder updated = new StringBuilder(current.trim());
+        if (updated.length() > 0) updated.append('\n');
+        updated.append(channelId);
+        if (handle != null && HANDLE_PATTERN.matcher(handle).matches() && !existing.contains(handle)) {
+            updated.append('\n').append(handle);
+        }
         Setting.preferences.preferences.edit().putString(
                 Settings.BLOCK_CHANNELS_LIST.key,
-                updated
+                updated.toString()
         ).apply();
         Utils.showToastLong(str("morphe_block_channels_added", channelId));
         return true;
