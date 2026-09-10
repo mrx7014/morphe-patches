@@ -211,6 +211,10 @@ public class Settings extends SharedYouTubeSettings {
     public static final LongSetting KEYWORD_HIDE_COUNT_COMMENTS = new LongSetting("morphe_keyword_hide_count_comments", 0L);
     public static final StringSetting KEYWORD_HIDES_24H = new StringSetting("morphe_keyword_hides_24h", "", false, false);
 
+    // Block channels
+    public static final BooleanSetting BLOCK_CHANNELS = new BooleanSetting("morphe_block_channels", FALSE);
+    public static final StringSetting BLOCK_CHANNELS_LIST = new StringSetting("morphe_block_channels_list", "", true, parent(BLOCK_CHANNELS));
+
     // Player
     public static final BooleanSetting DISABLE_CHAPTER_SKIP_DOUBLE_TAP = new BooleanSetting("morphe_disable_chapter_skip_double_tap", FALSE);
     public static final BooleanSetting DISABLE_HAPTIC_FEEDBACK_CHAPTERS = new BooleanSetting("morphe_disable_haptic_feedback_chapters", FALSE);
