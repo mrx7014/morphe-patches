@@ -1,3 +1,9 @@
+## [1.46.0](https://github.com/mrx7014/morphe-patches/compare/v1.45.0...v1.46.0) (2026-09-10)
+
+### ✨ New Features
+
+* **youtube:** confirm channel blocking and store handle ([5fc4c48](https://github.com/mrx7014/morphe-patches/commit/5fc4c48432072582734954ec8a190dc0e84bc6de))
+
 ## [1.45.0](https://github.com/mrx7014/morphe-patches/compare/v1.44.0...v1.45.0) (2026-09-08)
 
 ### ✨ New Features
