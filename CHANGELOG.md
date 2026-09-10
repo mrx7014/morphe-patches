@@ -1,3 +1,11 @@
+## [1.46.1](https://github.com/mrx7014/morphe-patches/compare/v1.46.0...v1.46.1) (2026-09-10)
+
+### 🐛 Bug Fixes
+
+* **ci:** guard optional release integrations ([065b67e](https://github.com/mrx7014/morphe-patches/commit/065b67e7c6957a885a64e71eb42ef2dd9af83aa4))
+* **youtube:** restore custom settings integrations ([d87e0e3](https://github.com/mrx7014/morphe-patches/commit/d87e0e3647e3d95f30b07ccabaa8c070673c6d70))
+* **youtube:** restore missing patch settings ([51538bd](https://github.com/mrx7014/morphe-patches/commit/51538bd6799591221d656bcc0de962372853812b))
+
 ## [1.46.0](https://github.com/mrx7014/morphe-patches/compare/v1.45.0...v1.46.0) (2026-09-10)
 
 ### ✨ New Features
