@@ -17,9 +17,6 @@ jobs:
       id-token: write
       attestations: write
       actions: write
-    env:
-      WEBSITE_APP_CONFIGURED: ${{ vars.MORPHE_AAMATT_APP_ID != '' && secrets.WEBSITE_DISPATCH_TOKEN != '' }}
-      FCM_CONFIGURED: ${{ secrets.FCM_PROJECT_ID != '' && secrets.FCM_SERVICE_ACCOUNT_JSON != '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -59,9 +56,7 @@ jobs:
           subject-path: patches/build/libs/patches-*.mpp
 
       - name: Generate website deploy token
-        if: >-
-          steps.release.outputs.new_release_published == 'true' &&
-          env.WEBSITE_APP_CONFIGURED == 'true'
+        if: steps.release.outputs.new_release_published == 'true'
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
@@ -70,10 +65,7 @@ jobs:
           owner: MorpheApp
 
       - name: Trigger website deploy
-        if: >-
-          steps.release.outputs.new_release_published == 'true' &&
-          env.WEBSITE_APP_CONFIGURED == 'true' &&
-          steps.app-token.outcome == 'success'
+        if: steps.release.outputs.new_release_published == 'true'
         uses: actions/github-script@v9
         with:
           github-token: ${{ steps.app-token.outputs.token }}
@@ -85,26 +77,17 @@ jobs:
             })
 
       - name: Wait before sending FCM
-        if: >-
-          steps.release.outputs.new_release_published == 'true' &&
-          (github.event_name == 'push' || inputs.send_fcm == true) &&
-          env.FCM_CONFIGURED == 'true'
+        if: steps.release.outputs.new_release_published == 'true' && (github.event_name == 'push' || inputs.send_fcm == true)
         run: sleep 300
 
       - name: Setup Python for FCM
-        if: >-
-          steps.release.outputs.new_release_published == 'true' &&
-          (github.event_name == 'push' || inputs.send_fcm == true) &&
-          env.FCM_CONFIGURED == 'true'
+        if: steps.release.outputs.new_release_published == 'true' && (github.event_name == 'push' || inputs.send_fcm == true)
         uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
       - name: Send FCM push notification
-        if: >-
-          steps.release.outputs.new_release_published == 'true' &&
-          (github.event_name == 'push' || inputs.send_fcm == true) &&
-          env.FCM_CONFIGURED == 'true'
+        if: steps.release.outputs.new_release_published == 'true' && (github.event_name == 'push' || inputs.send_fcm == true)
         env:
           FCM_PROJECT_ID: ${{ secrets.FCM_PROJECT_ID }}
           FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
