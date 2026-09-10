@@ -15,6 +15,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.shared.misc.settings.preference.ListPreference
 import app.morphe.patches.shared.misc.settings.preference.NonInteractivePreference
 import app.morphe.patches.shared.misc.settings.preference.SwitchPreference
+import app.morphe.patches.shared.misc.settings.preference.TextPreference
 import app.morphe.patches.youtube.misc.extension.sharedExtensionPatch
 import app.morphe.patches.youtube.misc.settings.settingsPatch
 import app.morphe.patches.youtube.shared.InitializePlaybackSpeedValuesFingerprint
@@ -63,6 +64,11 @@ internal val rememberPlaybackSpeedPatch = bytecodePatch {
                     key = "morphe_playback_speed_channel_whitelist",
                     tag = "app.morphe.extension.youtube.settings.preference.ChannelWhitelistPreference",
                     selectable = true
+                ),
+                TextPreference(
+                    key = "morphe_playback_speed_channel_defaults",
+                    titleKey = "morphe_playback_speed_channel_defaults_title",
+                    summaryKey = "morphe_playback_speed_channel_defaults_summary"
                 )
             )
         )

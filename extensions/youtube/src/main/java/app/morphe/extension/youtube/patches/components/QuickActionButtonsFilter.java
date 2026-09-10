@@ -87,6 +87,11 @@ public final class QuickActionButtonsFilter extends Filter {
                         "yt_fill_spark"
                 ),
                 new ByteArrayFilterGroup(
+                        Settings.HIDE_AI_FEATURES,
+                        "yt_fill_experimental_spark",
+                        "yt_fill_spark"
+                ),
+                new ByteArrayFilterGroup(
                         Settings.HIDE_QUICK_ACTIONS_COMMENTS_BUTTON,
                         "yt_outline_experimental_text_bubble",
                         "yt_outline_message_bubble"

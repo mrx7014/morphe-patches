@@ -43,7 +43,7 @@ public final class VideoActionButtonsFilter extends Filter {
     public enum ActionButton {
         UNKNOWN(false),
         ASK(
-                Settings.HIDE_ASK_BUTTON.get(),
+                Settings.HIDE_ASK_BUTTON.get() || Settings.HIDE_AI_FEATURES.get(),
                 "yt_fill_experimental_spark",
                 "yt_fill_spark"
         ),
@@ -193,6 +193,10 @@ public final class VideoActionButtonsFilter extends Filter {
         bufferGroupList.addAll(
                 new ByteArrayFilterGroup(
                         Settings.HIDE_ASK_BUTTON,
+                        "PAyouchat"
+                ),
+                new ByteArrayFilterGroup(
+                        Settings.HIDE_AI_FEATURES,
                         "PAyouchat"
                 ),
                 new ByteArrayFilterGroup(

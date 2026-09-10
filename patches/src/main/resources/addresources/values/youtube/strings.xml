@@ -165,6 +165,13 @@ Changes include:
     <string name="morphe_hide_description_components_screen_summary">Choose which components appear in the video description</string>
     <string name="morphe_hide_ai_generated_video_summary_section_title">Hide \'AI-generated video summary\' section</string>
     <string name="morphe_hide_ask_section_title">Hide Ask section</string>
+    <string name="morphe_hide_ai_features_title">Hide AI features</string>
+    <string name="morphe_hide_ai_features_summary">Hides AI summaries, Ask buttons, and AI entry points across YouTube.</string>
+    <string name="morphe_hide_ai_features_about_title">Hide AI features</string>
+    <string name="morphe_playback_speed_channel_defaults_title">Channel playback speed defaults</string>
+    <string name="morphe_playback_speed_channel_defaults_summary">One entry per line: Channel ID=1.5</string>
+    <string name="morphe_video_quality_channel_defaults_title">Channel video quality defaults</string>
+    <string name="morphe_video_quality_channel_defaults_summary">One entry per line: Channel ID=1080</string>
     <string name="morphe_hide_attributes_section_title">Hide Attributes section</string>
     <string name="morphe_hide_attributes_section_summary">Hides Featured places, Games, Music, and People mentioned sections</string>
     <string name="morphe_hide_chapters_section_title">Hide Chapters section</string>

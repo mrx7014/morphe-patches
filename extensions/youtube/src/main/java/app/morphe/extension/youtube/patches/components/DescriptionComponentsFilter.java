@@ -53,6 +53,13 @@ public final class DescriptionComponentsFilter extends Filter {
                 "youchat_entrypoint.e"
         );
 
+        final StringFilterGroup aiFeatures = new StringFilterGroup(
+                Settings.HIDE_AI_FEATURES,
+                "cell_expandable_metadata.e",
+                "input_composer_button.e",
+                "youchat_entrypoint.e"
+        );
+
         final StringFilterGroup correctionsSection = new StringFilterGroup(
                 Settings.HIDE_CORRECTIONS_SECTION,
                 "error_corrections_section"
@@ -203,6 +210,7 @@ public final class DescriptionComponentsFilter extends Filter {
         addPathCallbacks(
                 aiGeneratedVideoSummarySection,
                 askSection,
+                aiFeatures,
                 correctionsSection,
                 courseProgressSection,
                 featuredSection,

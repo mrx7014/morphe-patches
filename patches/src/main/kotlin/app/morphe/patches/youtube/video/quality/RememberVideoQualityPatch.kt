@@ -16,6 +16,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.shared.misc.settings.preference.ListPreference
 import app.morphe.patches.shared.misc.settings.preference.SwitchPreference
+import app.morphe.patches.shared.misc.settings.preference.TextPreference
 import app.morphe.patches.youtube.misc.extension.sharedExtensionPatch
 import app.morphe.patches.youtube.misc.playertype.playerTypeHookPatch
 import app.morphe.patches.youtube.misc.playservice.versionCheckPatch
@@ -65,6 +66,11 @@ val rememberVideoQualityPatch = bytecodePatch {
             ),
             SwitchPreference("morphe_remember_shorts_quality_last_selected", summary = true),
             SwitchPreference("morphe_remember_video_quality_last_selected_toast", summary = true)
+            ,TextPreference(
+                key = "morphe_video_quality_channel_defaults",
+                titleKey = "morphe_video_quality_channel_defaults_title",
+                summaryKey = "morphe_video_quality_channel_defaults_summary"
+            )
         ))
 
         onCreateHook(EXTENSION_CLASS, "newVideoStarted")

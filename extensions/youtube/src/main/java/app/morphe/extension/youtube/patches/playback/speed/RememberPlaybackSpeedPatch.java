@@ -39,6 +39,22 @@ public final class RememberPlaybackSpeedPatch {
 
     private static float reloadPlaybackAudioPitch = -2.0f;
 
+    private static float channelDefaultSpeed() {
+        String channelId = VideoInformation.getChannelId();
+        if (channelId == null || channelId.isEmpty()) return -2.0f;
+        for (String entry : Settings.PLAYBACK_SPEED_CHANNEL_DEFAULTS.get().split("\\R")) {
+            String[] parts = entry.trim().split("=", 2);
+            if (parts.length != 2 || !channelId.equals(parts[0].trim())) continue;
+            try {
+                float speed = Float.parseFloat(parts[1].trim());
+                return speed > 0.0f ? speed : -2.0f;
+            } catch (NumberFormatException ignored) {
+                return -2.0f;
+            }
+        }
+        return -2.0f;
+    }
+
     private static long lastTimeSpeedChanged;
 
     private static long lastTimePitchChanged;
@@ -158,7 +174,7 @@ public final class RememberPlaybackSpeedPatch {
             final boolean useReloadPlaybackSpeed = reloadPlaybackSpeed > 0;
             float defaultSpeed = useReloadPlaybackSpeed
                     ? reloadPlaybackSpeed
-                    : Settings.PLAYBACK_SPEED_DEFAULT.get();
+                    : channelDefaultSpeed() > 0 ? channelDefaultSpeed() : Settings.PLAYBACK_SPEED_DEFAULT.get();
             reloadPlaybackSpeed = -2.0f;
             if (!useReloadPlaybackSpeed && defaultSpeed != 1.0f) {
                 if (ChannelWhitelist.isCurrentChannelWhitelisted(WhitelistType.PLAYBACK_SPEED)) {

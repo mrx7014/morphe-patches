@@ -32,6 +32,22 @@ public class RememberVideoQualityPatch {
     private static final IntegerSetting shortsQualityWifi = Settings.SHORTS_QUALITY_DEFAULT_WIFI;
     private static final IntegerSetting shortsQualityMobile = Settings.SHORTS_QUALITY_DEFAULT_MOBILE;
 
+    private static int channelDefaultQuality() {
+        String channelId = VideoInformation.getChannelId();
+        if (channelId == null || channelId.isEmpty()) return VideoInformation.AUTOMATIC_VIDEO_QUALITY_VALUE;
+        for (String entry : Settings.VIDEO_QUALITY_CHANNEL_DEFAULTS.get().split("\\R")) {
+            String[] parts = entry.trim().split("=", 2);
+            if (parts.length != 2 || !channelId.equals(parts[0].trim())) continue;
+            try {
+                int quality = Integer.parseInt(parts[1].trim());
+                return quality > 0 ? quality : VideoInformation.AUTOMATIC_VIDEO_QUALITY_VALUE;
+            } catch (NumberFormatException ignored) {
+                return VideoInformation.AUTOMATIC_VIDEO_QUALITY_VALUE;
+            }
+        }
+        return VideoInformation.AUTOMATIC_VIDEO_QUALITY_VALUE;
+    }
+
     public static boolean shouldRememberVideoQuality() {
         BooleanSetting preference = ShortsPlayerState.isOpen()
                 ? Settings.REMEMBER_SHORTS_QUALITY_LAST_SELECTED
@@ -44,7 +60,9 @@ public class RememberVideoQualityPatch {
         IntegerSetting preference = Utils.getNetworkType() == Utils.NetworkType.MOBILE
                 ? (isShorts ? shortsQualityMobile : videoQualityMobile)
                 : (isShorts ? shortsQualityWifi : videoQualityWifi);
-        return preference.get();
+        int channelQuality = channelDefaultQuality();
+        return channelQuality != VideoInformation.AUTOMATIC_VIDEO_QUALITY_VALUE
+                ? channelQuality : preference.get();
     }
 
     public static void saveDefaultQuality(int qualityResolution) {
