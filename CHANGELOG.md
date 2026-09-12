@@ -1,3 +1,9 @@
+## [1.47.1](https://github.com/mrx7014/morphe-patches/compare/v1.47.0...v1.47.1) (2026-09-12)
+
+### 🐛 Bug Fixes
+
+* **youtube:** add missing auto pause strings ([a9ff802](https://github.com/mrx7014/morphe-patches/commit/a9ff80224575159dd9031143161027740615aaa5))
+
 ## [1.47.0](https://github.com/mrx7014/morphe-patches/compare/v1.46.1...v1.47.0) (2026-09-10)
 
 ### ✨ New Features
